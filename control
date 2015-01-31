@@ -1,0 +1,8 @@
+Package: org.thebigboss.afvideo
+Name: AFVideo
+Depends: mobilesubstrate, firmware (>= 5.0), gsc.auto-focus-camera
+Version: 1.0
+Architecture: iphoneos-arm
+Description: Allow autofocus while recording video.
+Author: PoomSmart
+Section: Tweaks
