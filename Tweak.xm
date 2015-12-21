@@ -12,6 +12,15 @@
 
 %end
 
+%hook AVCaptureFigVideoDevice_FigRecorder
+
+- (BOOL)isSmoothAutoFocusSupported
+{
+	return YES;
+}
+
+%end
+
 %end
 
 %group iOS9
@@ -21,15 +30,6 @@
 - (NSInteger)autoFocusSystem
 {
 	return 2;
-}
-
-%end
-
-%hook CMKCaptureController
-
-- (BOOL)_useSmoothFocus
-{
-	return YES;
 }
 
 %end
@@ -56,15 +56,6 @@
 
 %end
 
-%hook AVCaptureFigVideoDevice_FigRecorder
-
-- (BOOL)isSmoothAutoFocusSupported
-{
-	return YES;
-}
-
-%end
-
 %end
 
 %group preiOS8
@@ -82,22 +73,16 @@
 
 %ctor
 {
-	if (isiOS8Up)
-	{
-		if (isiOS9Up)
-		{
-			dlopen("/System/Library/PrivateFrameworks/CameraKit.framework/CameraKit", RTLD_LAZY);
+	if (isiOS8Up) {
+		if (isiOS9Up) {
 			dlopen("/System/Library/PrivateFrameworks/CameraUI.framework/CameraUI", RTLD_LAZY);
 			%init(iOS9);
-		}
-		else
-		{
+		} else {
+			dlopen("/System/Library/PrivateFrameworks/CameraKit.framework/CameraKit", RTLD_LAZY);
 			%init(iOS8);
 		}
 		%init(iOS8Up);
-	}
-	else
-	{
+	} else {
 		%init(preiOS8);
 	}
 }
