@@ -75,10 +75,10 @@
 {
 	if (isiOS8Up) {
 		if (isiOS9Up) {
-			dlopen("/System/Library/PrivateFrameworks/CameraUI.framework/CameraUI", RTLD_LAZY);
+			openCamera9();
 			%init(iOS9);
 		} else {
-			dlopen("/System/Library/PrivateFrameworks/CameraKit.framework/CameraKit", RTLD_LAZY);
+			openCamera8();
 			%init(iOS8);
 		}
 		%init(iOS8Up);
